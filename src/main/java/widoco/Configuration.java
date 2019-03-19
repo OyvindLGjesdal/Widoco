@@ -104,6 +104,8 @@ public class Configuration {
     //just in case there is an abstract included
     private String abstractSection;
     
+    private String introductionSection;
+    
     private boolean useW3CStyle;
     
     private String error;//Latest error to show to user via interface.
@@ -154,6 +156,7 @@ public class Configuration {
     public final void initializeConfig(){
         //initialization of variables (in case something fails)
         abstractSection = "";
+        introductionSection= "";
         publishProvenance = true;    
         includeAbstract = true;
         includeIntroduction = true;
@@ -221,6 +224,7 @@ public class Configuration {
             propertyFile.load(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             //We try to load from the configuration file. If it fails, then we should try to load from the ontology. Then, if it fails, we should ask the user.
             abstractSection = propertyFile.getProperty(Constants.ABSTRACT_SECTION_CONTENT);
+            introductionSection = propertyFile.getProperty(Constants.INTRODUCTION_SECTION_CONTENT);
             mainOntologyMetadata.setTitle (propertyFile.getProperty(Constants.ONT_TITLE,"Title goes here"));
             mainOntologyMetadata.setReleaseDate(propertyFile.getProperty(Constants.DATE_OF_RELEASE, "Date of release"));
             mainOntologyMetadata.setPreviousVersion(propertyFile.getProperty(Constants.PREVIOUS_VERSION));
@@ -866,6 +870,10 @@ public class Configuration {
         return abstractSection;
     }
 
+     public String getIntroductionSection() {
+        return introductionSection;
+    }
+
     public void setAbstractSection(String abstractSection) {
         this.abstractSection = abstractSection;
     }
@@ -918,7 +926,7 @@ public class Configuration {
         }
         return s;
     }
-    
+
     public ArrayList<String> getRemainingToGenerateDoc(){
         Iterator<String> it = languages.keySet().iterator();
         ArrayList<String> s = new ArrayList<String>();

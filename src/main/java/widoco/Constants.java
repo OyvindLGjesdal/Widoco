@@ -166,6 +166,7 @@ public class Constants {
     public static final String TTL="TurtleSerialization";
     public static final String N3="N3Serialization";
     public static final String JSON="JSONLDSerialization";
+    public static final String INTRODUCTION_SECTION_CONTENT="introduction";
     
     /*Property that will retrieve the status of the document from the property file*/
     public static final String STATUS="status";
@@ -282,10 +283,21 @@ public class Constants {
     }
             
     public static String getIntroductionSectionTitleAndPlaceHolder(Configuration c, Properties lang){
-        String s = "<h2 id=\"intro\" class=\"list\">"+lang.getProperty(LANG_INTRO_PLACEHODER);
+        String introductionContent = c.getIntroductionSection();
+        String h2 =  "<h2 id=\"intro\" class=\"list\">Introduction <span class=\"backlink\"> back to <a href=\"#toc\">ToC</a></span></h2>\n"
+                       + "<span class=\"markdown\">\n";
+        String endspan = "</span>\n";
+        String s;
+        if(introductionContent != null && !"".equals(introductionContent)){
+            s = h2 + introductionContent + endspan;
+        }
+        else {
+            s = h2+lang.getProperty(LANG_INTRO_PLACEHODER) + endspan;
+        }
         return s;
     }
     
+
     public static String getReferencesSection(Configuration c, Properties lang){
         String s ="<html>\n<h2 id=\"ref\" class=\"list\">"+lang.getProperty(LANG_REFERENCES_PLACEHOLDER)+"\n</html>\n";
         return s;
