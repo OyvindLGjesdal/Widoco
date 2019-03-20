@@ -103,8 +103,8 @@ public class Configuration {
     
     //just in case there is an abstract included
     private String abstractSection;
-    
     private String introductionSection;
+    private String descriptionSection;
     
     private boolean useW3CStyle;
     
@@ -157,6 +157,7 @@ public class Configuration {
         //initialization of variables (in case something fails)
         abstractSection = "";
         introductionSection= "";
+        descriptionSection = "";
         publishProvenance = true;    
         includeAbstract = true;
         includeIntroduction = true;
@@ -225,6 +226,8 @@ public class Configuration {
             //We try to load from the configuration file. If it fails, then we should try to load from the ontology. Then, if it fails, we should ask the user.
             abstractSection = propertyFile.getProperty(Constants.ABSTRACT_SECTION_CONTENT);
             introductionSection = propertyFile.getProperty(Constants.INTRODUCTION_SECTION_CONTENT);
+            descriptionSection = propertyFile.getProperty(Constants.DESCRIPTION_SECTION_CONTENT);
+            System.out.print("load description " + descriptionSection + "load introduction"+introductionSection);
             mainOntologyMetadata.setTitle (propertyFile.getProperty(Constants.ONT_TITLE,"Title goes here"));
             mainOntologyMetadata.setReleaseDate(propertyFile.getProperty(Constants.DATE_OF_RELEASE, "Date of release"));
             mainOntologyMetadata.setPreviousVersion(propertyFile.getProperty(Constants.PREVIOUS_VERSION));
@@ -874,6 +877,9 @@ public class Configuration {
         return introductionSection;
     }
 
+    public String getDescriptionSection() {
+        return descriptionSection;
+    }
     public void setAbstractSection(String abstractSection) {
         this.abstractSection = abstractSection;
     }

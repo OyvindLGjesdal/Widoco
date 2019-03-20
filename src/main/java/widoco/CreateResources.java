@@ -376,6 +376,7 @@ public class CreateResources {
         String textProperties = "\n";//the first line I leave an intro because there have been problems.
             textProperties+=Constants.ABSTRACT_SECTION_CONTENT+"="+conf.getAbstractSection()+"\n";
             textProperties+=Constants.INTRODUCTION_SECTION_CONTENT+"="+conf.getIntroductionSection()+"\n";
+            textProperties+=Constants.DESCRIPTION_SECTION_CONTENT+"="+conf.getDescriptionSection()+"\n";
             textProperties+=Constants.ONT_TITLE+"="+conf.getMainOntology().getTitle()+"\n";
             textProperties+=Constants.ONT_PREFIX+"="+conf.getMainOntology().getNamespacePrefix()+"\n";
             textProperties+=Constants.ONT_NAMESPACE_URI+"="+conf.getMainOntology().getNamespaceURI()+"\n";
